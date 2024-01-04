@@ -14,7 +14,7 @@ from autogen.agentchat.contrib import agent_builder
 from autogen.agentchat.contrib.gpt_assistant_agent import GPTAssistantAgent
 from pydantic import BaseModel
 from openai import OpenAI, AsyncOpenAI
-client = OpenAI()
+
 
 async def run_async(func, *args):
     loop = asyncio.get_event_loop()
@@ -239,6 +239,7 @@ class Prompt(BaseModel): # append options for handling received user messages to
 async def create_item(prompt: Prompt):
     user_message = prompt.value
     try:
+        client = OpenAI()
         response = client.chat.completions.create( # refine building task
             model="gpt-3.5-turbo",
             messages=[
