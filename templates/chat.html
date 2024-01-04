@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoBuild Chat</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <h1>AutoBuild</h1>
+        </div>
+        <div id="container">
+            <div id="build_area">
+                <h3>Build</h3>
+                <p>upload configs:</p>
+                <input id="configFile" type="file"/>
+                <p>or create new:</p>
+                <div id="build_task">
+                    <textarea id="task_input" placeholder="Enter your build task"></textarea>
+                    <button id="refine_button" onclick="refine()">Refine</button>
+                </div>
+                <input type="number" id="max_rounds_input" placeholder="Max Rounds (10 by default)">
+                <input type="number" id="agent_count_input" placeholder="Max Agents (5 by default)">
+                <input type="text" id="api_key_input" placeholder="Your OpenAI api key">
+                <select name="" id="select_model">
+                    <option value="gpt-4-1106-preview">gpt-4-1106-preview</option>
+                    <option value="gpt-3.5-turbo-1106">gpt-3.5-turbo-1106</option>
+                    <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                </select>
+                <div>
+                    <p style="display:inline-block">Human input mode:</p>
+                    <select name="" id="human_input_mode">
+                        <option value="NEVER">Never</option>
+                        <!-- <option value="ALWAYS">Always</option> -->
+                        <!-- <option value="TERMINATE">Terminate</option> -->
+                    </select>
+                </div>
+                <div>
+                    <p style="display:inline-block">Speaker selection mode:</p>
+                    <select name="" id="speaker_selection_mode">
+                        <option value="auto">Auto</option>
+                        <!-- <option value="manual">Manual</option> -->
+                        <option value="round_robin">Round Robin</option>
+                    </select>
+                </div>
+                <p>Tools:</p>
+                <div id="tools">
+                    <label>
+                        <input type="checkbox" class="tool" value="coding">
+                        <span>Coding</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="tool" value="weather">
+                        <span>Weather</span>
+                    </label>
+                    <!-- <label>
+                        <input type="checkbox" class="tool" value="wiki">
+                        <span>Wiki</span>
+                    </label> -->
+                </div>
+                <button style="display: block;" id="build_button" onclick="sendBuildMessage()">Build</button>
+            </div>
+            <div id="logs_area">
+                <h3>Logs</h3>
+                <div id="logs">
+                    <!-- logs -->
+                </div>
+                <div class="buttons">
+                    <button id="terminate_button" onclick="terminate()">Terminate</button>
+                </div>
+            </div>
+        </div>
+        <div id="chat_area">
+            <div id="chat_messages">
+                <ul id="messages" class="messages">
+                    <!-- <i style="color:gray">chat messages will be displayed here</i> -->
+                    <!-- <li><span>User: </span><br><pre>Message example</pre></li> -->
+                </ul>
+            </div>
+            <div id="send_message">
+                <input type="text" id="chat_input" placeholder="Enter your message">
+                <button onclick="sendMessage()">Send</button>
+                <button onclick="Save()">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
