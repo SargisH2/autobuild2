@@ -115,7 +115,7 @@ async def websocket_endpoint(websocket: WebSocket):
             await check_openai_api_key(api_key, websocket)
             await websocket.send_text("valid API key")
         except Exception as e:
-            await websocket.send_text("Api key error. check validation: " + api_key)
+            await websocket.send_text("Api key error, can't use OpenAI tools: " + api_key)
             continue
         
         await websocket.send_text("Creating agents...")

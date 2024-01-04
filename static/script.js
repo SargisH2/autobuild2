@@ -196,7 +196,6 @@ async function refine() {
 
     const refinedPrompt = await response.json();
     document.getElementById('task_input').value = refinedPrompt
-    addLog("Prompt refined")
 }
 
 function getSelectedToolValues() {
